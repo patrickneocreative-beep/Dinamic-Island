@@ -1,0 +1,17 @@
+name: Proponer una función
+description: Explica qué tarea te gustaría hacer desde ISLA.
+title: '[Idea] '
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: Qué quieres resolver
+    validations:
+      required: true
+  - type: textarea
+    id: interaction
+    attributes:
+      label: Cómo te gustaría usarlo
+      description: Describe qué verías con la isla cerrada y abierta, y cómo debería comportarse en la pantalla externa.
+    validations:
+      required: true

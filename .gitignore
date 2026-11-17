@@ -1,0 +1,37 @@
+# Generated apps, development binaries, test output and archives
+/build/
+/dist/
+/.build/
+/DerivedData/
+*.app/
+*.dSYM/
+*.zip
+*.dmg
+*.pkg
+*.log
+*.jsonl
+*.profraw
+isla-*-dev
+
+# macOS / IDE local state
+.DS_Store
+._*
+xcuserdata/
+*.xcuserstate
+.idea/
+.vscode/
+
+# Credentials, signing material and local configuration
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.p8
+*.mobileprovision
+*.provisionprofile
+
+# Runtime data and local verification output
+clipboard-pins.json
+/qa*/
+/captures/

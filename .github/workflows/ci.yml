@@ -1,0 +1,46 @@
+name: macOS build
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: macos-26
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Toolchain
+        run: |
+          xcrun --show-sdk-version
+          xcrun swiftc --version
+      - name: Check repository
+        run: |
+          python3 scripts/check-repository.py
+          bash -n build.sh scripts/package.sh Tests/*.sh
+          plutil -lint Info.plist
+      - name: Build both architectures and run self-tests
+        run: bash build.sh
+      - name: Package universal app
+        run: bash scripts/package.sh --skip-build
+      - name: Save app and checksum
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: ISLA-macOS-universal
+          path: |
+            dist/ISLA-*-macOS-universal.zip
+            dist/SHA256SUMS.txt
+          if-no-files-found: error
+          retention-days: 14

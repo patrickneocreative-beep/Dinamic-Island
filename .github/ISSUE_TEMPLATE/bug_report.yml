@@ -1,0 +1,38 @@
+name: Reportar un fallo
+description: Apertura, reproducción, bandeja u otro comportamiento inesperado.
+title: '[Bug] '
+body:
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Qué pasó y qué esperabas
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Pasos para reproducirlo
+      description: Incluye dónde estaba el cursor si el problema es de apertura.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Versión de ISLA, macOS y modelo de Mac
+      placeholder: 'ISLA 0.13.0 · macOS 26 · MacBook Pro Apple Silicon'
+    validations:
+      required: true
+  - type: dropdown
+    id: display
+    attributes:
+      label: Pantalla afectada
+      options:
+        - Pantalla del Mac con notch
+        - Pantalla externa
+        - Ambas
+        - No aplica
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Captura o registro opcional
+      description: Oculta tus notas, nombres de archivos, eventos, datos del teléfono y contenido del portapapeles. No adjuntes credenciales.
